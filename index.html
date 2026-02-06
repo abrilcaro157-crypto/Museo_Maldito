@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario: Artefactos Malditos Anime</title>
+    <link rel="stylesheet" href="css/mystyle.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <h1>Artefactos Malditos</h1>
+            <p>Sección Anime</p>
+        </header>
+
+        <main class="contenedor">
+            <div class="buscador">
+                <input type="text" v-model="busqueda" placeholder="Buscar objeto...">
+            </div>
+
+            <hr>
+
+            <div class="lista">
+                <div v-for="item in objetosFiltrados" :key="item.nombre" class="tarjeta">
+                    <img :src="item.imagen" :alt="item.nombre" class="imagen-objeto">
+                    <div class="info">
+                        <h3>{{ item.nombre }}</h3>
+                        <p><strong>Origen:</strong> {{ item.serie }}</p>
+                        <p><strong>Nivel:</strong> <span class="nivel">{{ item.nivel }}</span></p>
+                        <p><strong>Adquisición:</strong> {{ item.fechaAdquisicion.toLocaleDateString() }}</p>
+                        <p class="limpieza">Última Limpieza: {{ item.ultimaLimpieza.toLocaleDateString() }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <p v-if="objetosFiltrados.length === 0" style="text-align: center;">
+                No hay objetos que coincidan o su limpieza es mayor a un año.
+            </p>
+        </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+</body>
+</html>
