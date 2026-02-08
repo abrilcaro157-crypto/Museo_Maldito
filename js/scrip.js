@@ -2,6 +2,9 @@ const inst = Vue.createApp({
     data() {
         return {
             busqueda: '',
+            filtroAdquisicion: '',
+            filtroLimpieza: '',
+            mensaje: '',
             inventario: [
                 { 
                     nombre: "Death Note", 
@@ -54,23 +57,51 @@ const inst = Vue.createApp({
             ]
         }
     },
+    methods: {
+        resetFiltros() {
+            this.busqueda = '';
+            this.filtroAdquisicion = '';
+            this.filtroLimpieza = '';
+        },
+        guardarEnLocal() {
+            // se toman los objetos que aparecen en pantalla
+            const datosParaGuardar = this.objetosFiltrados;
+
+            // convierte el array a un "String" de texto
+            const textoJSON = JSON.stringify(datosParaGuardar);
+
+            // lo guarda con una "etiqueta" o llave
+            localStorage.setItem("misObjetosMalditos", textoJSON);
+        }
+    },
     computed: {
-        objetosFiltrados() {
-            //toma todo el año actual y resta un año, si un año es menor a 2025, el articulo esta muy sucio espiritualmente
+       objetosFiltrados() {
             let haceUnAño = new Date();
             haceUnAño.setFullYear(haceUnAño.getFullYear() - 1);
 
-            // Filtro de limpieza y búsqueda
-            let resultado = this.inventario.filter(obj => {
-                //Comprueba si la fecha de limpieza del objeto ocurrió después de la fecha que se calcula
+            return this.inventario.filter(obj => {
+                // limpieza menor a un año
                 const esReciente = obj.ultimaLimpieza > haceUnAño;
-                //Si se ecribe "De", entonces coincide con "Death Note" y "Dedo de Sukuna"
-                const coincide = obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
-                return esReciente && coincide;
-            });
 
-            // Ordena de lo más antiguo a lo más reciente
-            return resultado.sort((a, b) => a.fechaAdquisicion - b.fechaAdquisicion);
+                // búsqueda por nombre
+                const coincideNombre = obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+
+                // fecha de fdquisición
+                let coincideAdquisicion = true;
+                if (this.filtroAdquisicion) {
+                    const fechaSeleccionada = new Date(this.filtroAdquisicion);
+                    coincideAdquisicion = obj.fechaAdquisicion >= fechaSeleccionada;
+                }
+
+                // fecha de ultima limpieza
+                let coincideLimpiezaManual = true;
+                if (this.filtroLimpieza) {
+                    const fechaLimpiezaSel = new Date(this.filtroLimpieza);
+                    coincideLimpiezaManual = obj.ultimaLimpieza >= fechaLimpiezaSel;
+                }
+
+                return esReciente && coincideNombre && coincideAdquisicion && coincideLimpiezaManual;
+            }).sort((a, b) => a.fechaAdquisicion - b.fechaAdquisicion);
         }
     }
 });

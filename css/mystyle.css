@@ -131,3 +131,71 @@ header p {
     pointer-events: none;
     opacity: 0.1;
 }
+.filtros-fecha {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.campo-fecha {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 150px;
+}
+
+.campo-fecha label {
+    font-size: 0.8rem;
+    color: #8b0000;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.campo-fecha input {
+    background: #080808;
+    border: 1px solid #3d0000;
+    color: #c4b4a3;
+    padding: 8px;
+    font-family: monospace;
+}
+
+.btn-reset {
+    background: #4a0000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Crimson Text', serif;
+    transition: background 0.3s;
+    height: 38px;
+}
+
+.btn-reset:hover {
+    background: #8b0000;
+}
+.seccion-guardado {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-guardar {
+    background-color: #28a745; /* Verde para que parezca "Guardar" */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-guardar:hover {
+    background-color: #218838;
+}
+
+.mensaje-exito {
+    color: #ffd700;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}

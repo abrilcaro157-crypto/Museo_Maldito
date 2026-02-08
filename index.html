@@ -16,8 +16,27 @@
 
         <main class="contenedor">
             <div class="buscador">
-                <input type="text" v-model="busqueda" placeholder="Buscar objeto...">
-            </div>
+    <input type="text" v-model="busqueda" placeholder="Buscar por nombre...">
+    
+    <div class="filtros-fecha">
+        <div class="campo-fecha">
+            <label>Adquiridos desde:</label>
+            <input type="date" v-model="filtroAdquisicion">
+        </div>
+        <div class="campo-fecha">
+            <label>Limpios desde:</label>
+            <input type="date" v-model="filtroLimpieza">
+        </div>
+        <button @click="resetFiltros" class="btn-reset">Limpiar Filtros</button>
+    </div>
+</div>
+<div class="seccion-guardado">
+    <button @click="guardarEnLocal" class="btn-guardar">
+        Guardar resultados actuales (LocalStorage)
+    </button>
+    <p v-if="mensaje" class="mensaje-exito">{{ mensaje }}</p>
+</div>
+
 
             <hr>
 
@@ -39,7 +58,7 @@
             </p>
         </main>
     </div>
-
+    
     <script src="js/scrip.js"></script>
 </body>
 </html>
