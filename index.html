@@ -34,6 +34,9 @@
     <button @click="guardarEnLocal" class="btn-guardar">
         Guardar resultados actuales (LocalStorage)
     </button>
+    <button @click="imprimirSeleccionados" class="btn-reset" style="background-color: #555; margin-left: 10px;">
+        Generar Vista de Impresión
+    </button>
     <p v-if="mensaje" class="mensaje-exito">{{ mensaje }}</p>
 </div>
 
