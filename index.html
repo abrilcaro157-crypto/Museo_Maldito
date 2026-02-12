@@ -16,35 +16,38 @@
 
         <main class="contenedor">
             <div class="buscador">
-    <input type="text" v-model="busqueda" placeholder="Buscar por nombre...">
-    
-    <div class="filtros-fecha">
-        <div class="campo-fecha">
-            <label>Adquiridos desde:</label>
-            <input type="date" v-model="filtroAdquisicion">
-        </div>
-        <div class="campo-fecha">
-            <label>Limpios desde:</label>
-            <input type="date" v-model="filtroLimpieza">
-        </div>
-        <button @click="resetFiltros" class="btn-reset">Limpiar Filtros</button>
-    </div>
-</div>
-<div class="seccion-guardado">
-    <button @click="guardarEnLocal" class="btn-guardar">
-        Guardar resultados actuales (LocalStorage)
-    </button>
-    <button @click="imprimirSeleccionados" class="btn-reset" style="background-color: #555; margin-left: 10px;">
-        Generar Vista de Impresión
-    </button>
-    <p v-if="mensaje" class="mensaje-exito">{{ mensaje }}</p>
-</div>
+                <input type="text" v-model="busqueda" placeholder="Buscar por nombre...">
+                
+                <div class="filtros-fecha">
+                    <div class="campo-fecha">
+                        <label>Adquiridos desde:</label>
+                        <input type="date" v-model="filtroAdquisicion">
+                    </div>
+                    <div class="campo-fecha">
+                        <label>Limpios desde:</label>
+                        <input type="date" v-model="filtroLimpieza">
+                    </div>
+                    <button @click="resetFiltros" class="btn-reset">Limpiar Filtros</button>
+                </div>
+            </div>
 
+            <div class="seccion-guardado">
+                <button @click="generarReporte" class="btn-guardar" style="background-color: #8b0000;">
+                    Generar Reporte de Selección
+                </button>
+                <p v-if="mensaje" class="mensaje-exito">{{ mensaje }}</p>
+            </div>
 
             <hr>
 
             <div class="lista">
                 <div v-for="item in objetosFiltrados" :key="item.nombre" class="tarjeta">
+                    <input 
+                        type="checkbox" 
+                        class="check-maldito" 
+                        @change="seleccionarObjeto(item)"
+                    >
+                    
                     <img :src="item.imagen" :alt="item.nombre" class="imagen-objeto">
                     <div class="info">
                         <h3>{{ item.nombre }}</h3>
