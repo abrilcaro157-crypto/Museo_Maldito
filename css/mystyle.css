@@ -3,7 +3,7 @@ body {
     background-color: #050505;
     background-image: radial-gradient(circle, #1a0a0a 0%, #050505 100%);
     color: #c4b4a3;
-    font-family: 'Crimson Text', serif; 
+    font-family: 'Crimson Text', serif; /* Una fuente clásica y elegante */
     margin: 0;
     padding: 40px 20px;
     min-height: 100vh;
@@ -180,12 +180,27 @@ header p {
     margin: 20px 0;
 }
 
+.btn-guardar {
+    background-color: #28a745; /* Verde para que parezca "Guardar" */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-guardar:hover {
+    background-color: #218838;
+}
+
 .mensaje-exito {
     color: #ffd700;
     font-size: 0.9rem;
     margin-top: 10px;
 }
 
+/* Ajuste para el botón de imprimir */
 .btn-imprimir {
     background-color: #6c757d;
     color: white;
@@ -202,6 +217,7 @@ header p {
     background-color: #5a6268;
 }
 
+/* Estilo para el contenedor del checkbox */
 .control-seleccion {
     margin-right: 20px;
     display: flex;
@@ -212,22 +228,23 @@ header p {
     width: 22px;
     height: 22px;
     cursor: pointer;
-    accent-color: #8b0000; 
+    accent-color: #8b0000; /* Color rojo para que combine */
 }
 
+/* Asegurar que la tarjeta se vea bien con el checkbox */
 .tarjeta {
     display: flex;
     align-items: center;
-   
 }
 .check-maldito {
     margin-right: 20px;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #8b0000; 
+    accent-color: #8b0000; /* Color rojo para el check */
 }
 
+/* Ajuste del botón de reporte */
 .btn-guardar {
     text-transform: uppercase;
     letter-spacing: 2px;
